@@ -52,13 +52,25 @@ class MazeGrid(tk.Tk, object):
         self.canvas.image7 = trap5
         self.trap_5 = self.canvas.create_image(cell * 3 + 1, cell * 4 + 1, image=trap5, anchor="nw")
 
+        trap6 = tk.PhotoImage(file='./images/trap.png')
+        self.canvas.image8 = trap6
+        self.trap_6 = self.canvas.create_image(cell * 5 + 1, cell * 5 + 1, image=trap6, anchor="nw")
+
+        trap7 = tk.PhotoImage(file='./images/trap.png')
+        self.canvas.image9 = trap7
+        self.trap_7 = self.canvas.create_image(1, 1, image=trap7, anchor="nw")
+
+        trap8 = tk.PhotoImage(file='./images/trap.png')
+        self.canvas.image10 = trap8
+        self.trap_8 = self.canvas.create_image(cell * 5 + 1, 1, image=trap8, anchor="nw")
+
         cheese = tk.PhotoImage(file='./images/cheese.png')
         self.canvas.image = cheese
         self.cheese = self.canvas.create_image(cell * 2 + 1, cell * 2 + 1, image=cheese, anchor="nw")
 
         mouse = tk.PhotoImage(file='./images/mouse.png')
         self.canvas.image2 = mouse
-        self.mouse = self.canvas.create_image(0, 0, image=mouse, anchor="nw")
+        self.mouse = self.canvas.create_image(0, cell * 5, image=mouse, anchor="nw")
 
         self.canvas.pack()
 
@@ -68,7 +80,7 @@ class MazeGrid(tk.Tk, object):
         self.canvas.delete(self.mouse)
         mouse = tk.PhotoImage(file='./images/mouse.png')
         self.canvas.image2 = mouse
-        self.mouse = self.canvas.create_image(0, 0, image=mouse, anchor="nw")
+        self.mouse = self.canvas.create_image(0, cell * 5, image=mouse, anchor="nw")
         # return the state of the mouse
         return self.canvas.coords(self.mouse)
 
@@ -116,7 +128,8 @@ class MazeGrid(tk.Tk, object):
             next_state = 'terminal'
         elif [next_state[0] + 1, next_state[1] + 1] in \
                 [self.canvas.coords(self.trap_1), self.canvas.coords(self.trap_2), self.canvas.coords(self.trap_3),
-                 self.canvas.coords(self.trap_4),self.canvas.coords(self.trap_5)]:
+                 self.canvas.coords(self.trap_4), self.canvas.coords(self.trap_5), self.canvas.coords(self.trap_6),
+                 self.canvas.coords(self.trap_7), self.canvas.coords(self.trap_8)]:
             reward = -100
             next_state = 'terminal'
             done = True
@@ -136,7 +149,7 @@ def update():
         env.reset()
         while True:
             env.render()
-            a = 1
+            a = 2
             s, r, done = env.step(a)
             if done:
                 break

@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 def update():
     learning_info = []
-    for episode in range(100):
+    for episode in range(500):
         state = env.reset()
         total_rewards = 0
         while True:
