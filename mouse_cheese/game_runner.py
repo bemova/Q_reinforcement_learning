@@ -1,5 +1,5 @@
-from maze_environment import MazeGrid
-from q_learning_table import QLearning
+from mouse_cheese.maze_environment import MazeGrid
+from mouse_cheese.q_learning_table import QLearning
 import matplotlib.pyplot as plt
 
 
